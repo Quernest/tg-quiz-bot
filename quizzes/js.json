@@ -1,0 +1,15 @@
+[
+  {
+    "question": "Which property references the DOM object that dispatched an event?",
+    "options": [
+      "A: self",
+      "B: object",
+      "C: target",
+      "D: source"
+    ],
+    "extra": {
+      "correct_option_id": 2,
+      "open_period": 15
+    }
+  }
+]

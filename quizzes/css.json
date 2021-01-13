@@ -1,0 +1,45 @@
+[
+  {
+    "question": "In the following example, which selector has the highest specificity ranking for selecting the anchor link element?",
+    "photo": {
+      "source": "./images/css-basic-1.jpg",
+      "filename": "css"
+    },
+    "options": [
+      "A: .example a",
+      "B: div a",
+      "C: a",
+      "D: ul li a"
+    ],
+    "extra": {
+      "correct_option_id": 0,
+      "open_period": 15
+    }
+  },
+  {
+    "question": "Using an attribute selector, how would you select an `<a>` element with a `title` attribute?",
+    "options": [
+      "A: a[title]{...}",
+      "B: a > title {...}",
+      "C: a.title {...}",
+      "D: a=title {...}"
+    ],
+    "extra": {
+      "correct_option_id": 0,
+      "open_period": 20
+    }
+  },
+  {
+    "question": "Choose incorrect value of background-value",
+    "options": [
+      "A: currentcolor",
+      "B: #ff000080",
+      "C: rgba(255, 0, 0, 0.3)",
+      "D: all values ​​are correct"
+    ],
+    "extra": {
+      "correct_option_id": 3,
+      "open_period": 15
+    }
+  }
+]
