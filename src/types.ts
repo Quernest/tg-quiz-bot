@@ -4,7 +4,7 @@ import type { ExtraPoll, InputFile } from 'telegraf/typings/telegram-types';
 export type Quiz = {
   question: string;
   options: string[];
-  extra?: ExtraPoll & {
+  extra: ExtraPoll & {
     open_period: number;
   };
   photo?: InputFile;
@@ -12,6 +12,9 @@ export type Quiz = {
 
 export interface SessionData {
   step: number;
+  skipped: number;
+  correct: number;
+  incorrect: number;
   topic: string;
   timeout?: NodeJS.Timeout;
 }

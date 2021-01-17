@@ -3,6 +3,7 @@ import { promises as fs } from 'fs';
 
 import type { Context, Quiz } from '../types';
 import { isInputFileByPath } from '../utils';
+import logger from '../logger';
 
 export default class QuizService {
   quizzes: Map<string, Quiz[]> = new Map();
@@ -28,7 +29,15 @@ export default class QuizService {
   async startQuiz(userId: number | string, topic: string, ctx: Context) {
     try {
       await this.getQuizzesByTopic(topic);
-      ctx.session = { step: 0, topic };
+
+      ctx.session = {
+        step: 0,
+        skipped: 0,
+        correct: 0,
+        incorrect: 0,
+        topic,
+      };
+
       await this.sendQuiz(userId, ctx);
     } catch (e) {
       throw e;
@@ -53,6 +62,7 @@ export default class QuizService {
       }
 
       if (ctx.session.step === quizzes.length) {
+        logger.info(`${userId}`, ctx.session);
         await ctx.telegram.sendMessage(userId, '🎉');
         ctx.session.step = 0;
         return ctx;
@@ -82,9 +92,60 @@ export default class QuizService {
 
       if (extra && extra.open_period) {
         const ms = extra.open_period * 1000;
-        ctx.session.timeout = setTimeout(() => this.sendQuiz(userId, ctx), ms);
+        ctx.session.timeout = setTimeout(() => {
+          // @ts-ignore
+          ctx.session.skipped++;
+          this.sendQuiz(userId, ctx);
+        }, ms);
       }
 
+      return ctx;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async handlePollAnswer(ctx: Context) {
+    try {
+      if (!ctx.pollAnswer) {
+        return ctx;
+      }
+
+      const { id } = ctx.pollAnswer.user;
+
+      if (ctx.session?.topic) {
+        const quizzes = this.quizzes.get(ctx.session.topic);
+
+        if (quizzes) {
+          const quiz = quizzes[ctx.session.step - 1];
+
+          if (quiz) {
+            const {
+              extra: { correct_option_id: correctOptionId },
+            } = quiz;
+            const [currentOptionId] = ctx.pollAnswer.option_ids;
+
+            if (currentOptionId === correctOptionId) {
+              ctx.session.correct++;
+            } else {
+              ctx.session.incorrect++;
+            }
+          }
+        }
+      }
+
+      await this.sendQuiz(id, ctx);
+
+      return ctx;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async handleStartQuiz(ctx: Context, topic: string) {
+    try {
+      const id = ctx.message?.chat?.id as number;
+      await this.startQuiz(id, topic, ctx);
       return ctx;
     } catch (e) {
       throw e;
