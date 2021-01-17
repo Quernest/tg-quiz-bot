@@ -1,50 +1,23 @@
-import type { Context } from 'telegraf';
-import type {
-  ExtraPoll,
-  InputFile,
-  InputFileByBuffer,
-  InputFileByPath,
-} from 'telegraf/typings/telegram-types';
+import type { InputFileByBuffer } from 'telegraf/typings/telegram-types';
 import { promises as fs } from 'fs';
 
-function isInputFileByPath(inputFile: any): inputFile is InputFileByPath {
-  return typeof (inputFile as InputFileByPath).source === 'string';
-}
-
-type Quiz = {
-  question: string;
-  options: string[];
-  extra?: ExtraPoll & {
-    open_period: number;
-  };
-  photo?: InputFile;
-};
-
-type QuizTopic = 'js' | 'css' | 'react';
-
-type QuizStoreItem = {
-  index: number;
-  topic: QuizTopic;
-  timeout?: NodeJS.Timeout | number;
-};
+import type { Context, Quiz } from '../types';
+import { isInputFileByPath } from '../utils';
 
 export default class QuizService {
-  store: Record<number | string, QuizStoreItem> = {};
+  quizzes: Map<string, Quiz[]> = new Map();
 
-  // @todo use QuizTopic as key
-  quizzes: Record<string, Quiz[]> = {};
-
-  async loadQuizzesByTopic(topic: QuizTopic): Promise<Quiz[]> {
+  async getQuizzesByTopic(topic: string): Promise<Quiz[]> {
     try {
-      if (this.quizzes[topic]) {
-        return this.quizzes[topic];
+      if (this.quizzes.has(topic)) {
+        return this.quizzes.get(topic) as Quiz[];
       }
 
       const path = `./quizzes/${topic}.json`;
       const file = await fs.readFile(path, 'utf8');
       const questions = JSON.parse(file) as Quiz[];
 
-      this.quizzes[topic] = questions;
+      this.quizzes.set(topic, questions);
 
       return questions;
     } catch (e) {
@@ -52,20 +25,11 @@ export default class QuizService {
     }
   }
 
-  async startQuiz(userId: number | string, topic: QuizTopic, ctx?: Context) {
+  async startQuiz(userId: number | string, topic: string, ctx: Context) {
     try {
-      if (!this.quizzes[topic]) {
-        await this.loadQuizzesByTopic(topic);
-      }
-
-      this.store[userId] = {
-        index: 0,
-        topic,
-      };
-
-      if (ctx) {
-        await this.sendQuiz(userId, ctx);
-      }
+      await this.getQuizzesByTopic(topic);
+      ctx.session = { step: 0, topic };
+      await this.sendQuiz(userId, ctx);
     } catch (e) {
       throw e;
     }
@@ -73,30 +37,30 @@ export default class QuizService {
 
   async sendQuiz(userId: number | string, ctx: Context) {
     try {
-      if (!this.store[userId]) {
+      if (!ctx.session) {
         return ctx;
       }
 
-      if (this.store[userId].timeout) {
-        clearTimeout(this.store[userId].timeout as number);
-        delete this.store[userId].timeout;
+      if (ctx.session.timeout) {
+        clearTimeout(ctx.session.timeout);
+        delete ctx.session.timeout;
       }
 
-      if (
-        this.store[userId] &&
-        this.store[userId].index ===
-          this.quizzes[this.store[userId].topic].length
-      ) {
+      const quizzes = this.quizzes.get(ctx.session.topic);
+
+      if (!quizzes) {
+        return ctx;
+      }
+
+      if (ctx.session.step === quizzes.length) {
         await ctx.telegram.sendMessage(userId, '🎉');
-        this.store[userId].index = 0;
+        ctx.session.step = 0;
         return ctx;
       }
 
-      const { question, options, extra, photo } = this.quizzes[
-        this.store[userId].topic
-      ][this.store[userId].index];
+      const { question, options, extra, photo } = quizzes[ctx.session.step];
 
-      this.store[userId].index++;
+      ctx.session.step++;
 
       await ctx.telegram.sendQuiz(userId, question, options, {
         ...extra,
@@ -118,11 +82,7 @@ export default class QuizService {
 
       if (extra && extra.open_period) {
         const ms = extra.open_period * 1000;
-
-        this.store[userId].timeout = setTimeout(
-          () => this.sendQuiz(userId, ctx),
-          ms,
-        );
+        ctx.session.timeout = setTimeout(() => this.sendQuiz(userId, ctx), ms);
       }
 
       return ctx;
