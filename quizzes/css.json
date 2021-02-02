@@ -41,5 +41,288 @@
       "correct_option_id": 3,
       "open_period": 15
     }
+  },
+  {
+    "question": "Can you put <a> inside <img />?",
+    "options": [
+      "A: Yes",
+      "B: No"
+    ],
+    "extra": {
+      "correct_option_id": 1,
+      "open_period": 15
+    }
+  },
+  {
+    "question": "Which selector to refer to each link whose href attribute ends with .pdf?",
+    "options": [
+      "A: a[href^=\".pdf\"]",
+      "B: a[href$=\".pdf\"]",
+      "C: a[href*=\".pdf\"]",
+      "D: none of them"
+    ],
+    "extra": {
+      "correct_option_id": 2,
+      "open_period": 25
+    }
+  },
+  {
+    "question": "What property for li:before allows you to specify anything instead of dots in <ul> or numbers in <ol>?",
+    "options": [
+      "A: background",
+      "B: caption",
+      "C: figcaption",
+      "D: content"
+    ],
+    "extra": {
+      "correct_option_id": 3,
+      "open_period": 25
+    }
+  },
+  {
+    "question": "Which property:value pair allows you to prevent an element from being the target of mouse events?",
+    "options": [
+      "A: pointer-none: true",
+      "B: pointer-events: false",
+      "C: pointer-events: none",
+      "D: ui-transparent: true"
+    ],
+    "extra": {
+      "correct_option_id": 2,
+      "open_period": 25
+    }
+  },
+  {
+    "question": "How to flip an image both horizontally and vertically?",
+    "options": [
+      "A: transform: scale(-1, 1)",
+      "B: transform: scale(1, -1)",
+      "C: transform: scale(1, 1)",
+      "D: transform: scale(-1, -1)"
+    ],
+    "extra": {
+      "correct_option_id": 3,
+      "open_period": 30
+    }
+  },
+  {
+    "question": "What value of the flex-direction property must be specified to set the horizontal direction in the flex container from left to right?",
+    "options": [
+      "A: column",
+      "B: column-reverse",
+      "C: row-reverse",
+      "D: nothing needs to be specified, this is the default value"
+    ],
+    "extra": {
+      "correct_option_id": 3,
+      "open_period": 30
+    }
+  },
+  {
+    "question": "How to remove markers in list?",
+    "options": [
+      "A: list-markers: none",
+      "B: list-style-type: null",
+      "C: list-style-type: none",
+      "D: markers: none"
+    ],
+    "extra": {
+      "correct_option_id": 2,
+      "open_period": 25
+    }
+  },
+  {
+    "question": "How to make a square image a round one?",
+    "options": [
+      "A: transform: round(50%)",
+      "B: border-radius: 50%",
+      "C: transform: round(50)",
+      "D: transform: round(50%)"
+    ],
+    "extra": {
+      "correct_option_id": 1,
+      "open_period": 25
+    }
+  },
+  {
+    "question": "What is the numeric value for \"normal\" font weight?",
+    "options": [
+      "A: 300",
+      "B: 400",
+      "C: 500",
+      "D: 700"
+    ],
+    "extra": {
+      "correct_option_id": 1,
+      "open_period": 15
+    }
+  },
+  {
+    "question": "Which property allows you to limit the area of ​​an element where its content will be visible?",
+    "options": [
+      "A: clip",
+      "B: crop",
+      "C: cut",
+      "D: limit"
+    ],
+    "extra": {
+      "correct_option_id": 0,
+      "open_period": 25
+    }
+  },
+  {
+    "question": "What is the default max-width value?",
+    "options": [
+      "A: auto",
+      "B: none",
+      "C: 100vh",
+      "D: 100%"
+    ],
+    "extra": {
+      "correct_option_id": 1,
+      "open_period": 15
+    }
+  },
+  {
+    "question": "What code in styles will rotate the element 180 degrees?",
+    "options": [
+      "A: transform: rotate(180deg)",
+      "B: rotate: 180deg",
+      "C: rotate: 180",
+      "D: transform: rotate(180)"
+    ],
+    "extra": {
+      "correct_option_id": 0,
+      "open_period": 25
+    }
+  },
+  {
+    "question": "Which CSS property allows you to prevent line breaks or show text with all whitespace and hyphenation?",
+    "options": [
+      "A: word-wrap",
+      "B: white-space",
+      "C: line-break",
+      "D: word-break"
+    ],
+    "extra": {
+      "correct_option_id": 1,
+      "open_period": 30
+    }
+  },
+  {
+    "question": "Which selector allows you to refer to an adjacent (immediately following) element?",
+    "options": [
+      "A: elem1 ~ elem2 { ... }",
+      "B: elem1 + elem2 { ... }",
+      "C: elem1 > elem2 { ... }",
+      "D: elem1 elem 2 { ... }"
+    ],
+    "extra": {
+      "correct_option_id": 1,
+      "open_period": 35
+    }
+  },
+  {
+    "question": "Which construction allows you to apply styles to all elements within the same parent corresponding to a selector, except the first one?",
+    "options": [
+      "A: selector:not(:last-child) { ... }",
+      "B: selector:(:not:last-child) { ... }",
+      "C: selector:(:not-last-child) { ... }",
+      "D: selector:not:(last-child) { ... }"
+    ],
+    "extra": {
+      "correct_option_id": 0,
+      "open_period": 40
+    }
+  },
+  {
+    "question": "CSS grid introduced a new length unit, fr, to create flexible grid tracks. Referring to the code sample below, what will the widths of the three columns be?",
+    "options": [
+      "A: The first column will have a width of 50px. The second column will be 50px wide and the third column will be 100px wide.",
+      "B: The first column will have a width of 50px. The second column will be 150px wide and the third column will be 300px wide.",
+      "C: The first column will have a width of 50px. The second column will be 300px wide and the third column will be 150px wide.",
+      "D: The first column will have a width of 50px. The second column will be 500px wide and the third column will be 1000px wide."
+    ],
+    "extra": {
+      "photo": {
+        "source": "./images/css-basic-19.jpg",
+        "filename": "css"
+      },
+      "correct_option_id": 1,
+      "open_period": 50
+    }
+  },
+  {
+    "question": "What is the line-height property primarily used for?",
+    "options": [
+      "A: to control the height of the space between two lines of content",
+      "B: to control the height of the space between heading elements",
+      "C: to control the height of the character size",
+      "D: to control the width of the space between characters"
+    ],
+    "extra": {
+      "correct_option_id": 0,
+      "open_period": 25
+    }
+  },
+  {
+    "question": "In the following example, according to cascading and specificity rules, what color will the link be?",
+    "options": [
+      "A: green",
+      "B: yellow",
+      "C: blue",
+      "D: red"
+    ],
+    "extra": {
+      "photo": {
+        "source": "./images/css-basic-21.jpg",
+        "filename": "css"
+      },
+      "correct_option_id": 1,
+      "open_period": 50
+    }
+  },
+  {
+    "question": "When using position: fixed, what will the element always be positioned relative to?",
+    "options": [
+      "A: the closest element with position: relative",
+      "B: the viewport",
+      "C: the parent element",
+      "D: the wrapper element"
+    ],
+    "extra": {
+      "correct_option_id": 1,
+      "open_period": 35
+    }
+  },
+  {
+    "question": "How would you make the first letter of every paragraph on the page red?",
+    "options": [
+      "A: p::first-letter { color: red; }",
+      "B: p:first-letter { color: red; }",
+      "C: first-letter::p { color: red; }",
+      "D: first-letter:p { color: red; }"
+    ],
+    "extra": {
+      "correct_option_id": 0,
+      "open_period": 35
+    }
+  },
+  {
+    "question": "In the following media query example, what conditions are being targeted?",
+    "options": [
+      "A: The rule will apply to a device that has either a width of 1024px or wider, or is a screen device in landscape mode.",
+      "B: The rule will apply to a device that has a width of 1024px or narrower and is a screen device in landscape mode.",
+      "C: The rule will apply to a device that has a width of 1024px or wider and is a screen device in landscape mode.",
+      "D: The rule will apply to a device that has a width of 1024px or narrower, or is a screen device in landscape mode."
+    ],
+    "extra": {
+      "photo": {
+        "source": "./images/css-basic-24.jpg",
+        "filename": "css"
+      },
+      "correct_option_id": 0,
+      "open_period": 60
+    }
   }
 ]
