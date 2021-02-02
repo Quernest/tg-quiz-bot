@@ -106,7 +106,7 @@
     }
   },
   {
-    "question": "What value of the flex-direction property must be specified to set the horizontal direction in the flex container from left to right?",
+    "question": "What value of flex-direction must be specified to set horizontal direction from left to right?",
     "options": [
       "A: column",
       "B: column-reverse",
@@ -158,7 +158,7 @@
     }
   },
   {
-    "question": "Which property allows you to limit the area of ​​an element where its content will be visible?",
+    "question": "Which property limits the area of ​​an element where its content will be visible?",
     "options": [
       "A: clip",
       "B: crop",
@@ -197,7 +197,7 @@
     }
   },
   {
-    "question": "Which CSS property allows you to prevent line breaks or show text with all whitespace and hyphenation?",
+    "question": "Which CSS prop prevents line breaks or show text with all whitespace and hyphenation?",
     "options": [
       "A: word-wrap",
       "B: white-space",
@@ -223,7 +223,7 @@
     }
   },
   {
-    "question": "Which construction allows you to apply styles to all elements within the same parent corresponding to a selector, except the first one?",
+    "question": "How to apply styles to all elements within the same parent to a selector, except the first one?",
     "options": [
       "A: selector:not(:last-child) { ... }",
       "B: selector:(:not:last-child) { ... }",
@@ -236,18 +236,18 @@
     }
   },
   {
-    "question": "CSS grid introduced a new length unit, fr, to create flexible grid tracks. Referring to the code sample below, what will the widths of the three columns be?",
+    "question": "CSS grid introduced a new length unit - fr. What will the widths of the three columns be?",
+    "photo": {
+      "source": "./images/css-basic-19.jpg",
+      "filename": "css"
+    },
     "options": [
-      "A: The first column will have a width of 50px. The second column will be 50px wide and the third column will be 100px wide.",
-      "B: The first column will have a width of 50px. The second column will be 150px wide and the third column will be 300px wide.",
-      "C: The first column will have a width of 50px. The second column will be 300px wide and the third column will be 150px wide.",
-      "D: The first column will have a width of 50px. The second column will be 500px wide and the third column will be 1000px wide."
+      "A: The first - 50px. The second - 50px, the third - 100px",
+      "B: The first - 50px. The second - 150px, the third - 300px",
+      "C: The first - 50px. The second - 300px, the third - 150px",
+      "D: The first - 50px. The second - 500px, the third - 1000px"
     ],
     "extra": {
-      "photo": {
-        "source": "./images/css-basic-19.jpg",
-        "filename": "css"
-      },
       "correct_option_id": 1,
       "open_period": 50
     }
@@ -266,7 +266,11 @@
     }
   },
   {
-    "question": "In the following example, according to cascading and specificity rules, what color will the link be?",
+    "question": "In the following example, what color will the link be?",
+    "photo": {
+      "source": "./images/css-basic-21.jpg",
+      "filename": "css-21"
+    },
     "options": [
       "A: green",
       "B: yellow",
@@ -274,10 +278,6 @@
       "D: red"
     ],
     "extra": {
-      "photo": {
-        "source": "./images/css-basic-21.jpg",
-        "filename": "css"
-      },
       "correct_option_id": 1,
       "open_period": 50
     }
@@ -310,17 +310,17 @@
   },
   {
     "question": "In the following media query example, what conditions are being targeted?",
+    "photo": {
+      "source": "./images/css-basic-24.jpg",
+      "filename": "css-24"
+    },
     "options": [
-      "A: The rule will apply to a device that has either a width of 1024px or wider, or is a screen device in landscape mode.",
-      "B: The rule will apply to a device that has a width of 1024px or narrower and is a screen device in landscape mode.",
-      "C: The rule will apply to a device that has a width of 1024px or wider and is a screen device in landscape mode.",
-      "D: The rule will apply to a device that has a width of 1024px or narrower, or is a screen device in landscape mode."
+      "A: either a width of 1024px or wider, or is a screen device in landscape mode.",
+      "B: width of 1024px or narrower and is a screen device in landscape mode.",
+      "C: width of 1024px or wider and is a screen device in landscape mode.",
+      "D: width of 1024px or narrower, or is a screen device in landscape mode."
     ],
     "extra": {
-      "photo": {
-        "source": "./images/css-basic-24.jpg",
-        "filename": "css"
-      },
       "correct_option_id": 0,
       "open_period": 60
     }

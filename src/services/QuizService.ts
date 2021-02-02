@@ -44,6 +44,26 @@ export default class QuizService {
     }
   }
 
+  async endQuiz(userId: number | string, ctx: Context) {
+    if (!ctx.session) {
+      return ctx;
+    }
+
+    const { correct, incorrect, skipped } = ctx.session;
+
+    await ctx.telegram.sendMessage(
+      userId,
+      `🤔 Skipped: *${skipped}* | 😔 Incorrect: *${incorrect}* | ✅ Correct: *${correct}*`,
+      { parse_mode: 'Markdown' }
+    );
+
+    await ctx.telegram.sendMessage(userId, '🎉');
+
+    ctx.session.step = 0;
+
+    return ctx;
+  }
+
   async sendQuiz(userId: number | string, ctx: Context) {
     try {
       if (!ctx.session) {
@@ -62,10 +82,7 @@ export default class QuizService {
       }
 
       if (ctx.session.step === quizzes.length) {
-        logger.info(`${userId}`, ctx.session);
-        await ctx.telegram.sendMessage(userId, '🎉');
-        ctx.session.step = 0;
-        return ctx;
+        return await this.endQuiz(userId, ctx);
       }
 
       const { question, options, extra, photo } = quizzes[ctx.session.step];
